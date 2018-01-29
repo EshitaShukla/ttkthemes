@@ -11,6 +11,8 @@ else:
     import Tkinter as tk
     import ttk
 from ttkthemes import ThemedTk
+from ttkwidgets import ScaleEntry
+from ttkwidgets.autocomplete import AutocompleteCombobox
 from PIL import Image
 
 
@@ -34,6 +36,8 @@ class Example(ThemedTk):
         self.scroll = ttk.Scrollbar(self, orient=tk.VERTICAL)
         self.checked = ttk.Checkbutton(self, text="Checked", variable=tk.BooleanVar(value=True))
         self.unchecked = ttk.Checkbutton(self, text="Unchecked")
+        self.scale_entry = ScaleEntry(self, from_=0, to=50, orient=tk.HORIZONTAL, compound=tk.RIGHT)
+        self.combo = AutocompleteCombobox(self, completevalues=["something", "something else"])
         # Grid widgets
         self.grid_widgets()
         # Bind screenshot button
@@ -51,6 +55,8 @@ class Example(ThemedTk):
         self.checked.grid(row=5, column=1, **sticky)
         self.unchecked.grid(row=5, column=2, **sticky)
         self.scroll.grid(row=1, column=3, rowspan=5, **sticky)
+        self.scale_entry.grid(row=6, column=1, columnspan=2, **sticky)
+        self.combo.grid(row=7, column=1, columnspan=2, **sticky)
 
     def screenshot(self, *args):
         """Take a screenshot, crop and save"""
@@ -68,5 +74,5 @@ class Example(ThemedTk):
 
 if __name__ == '__main__':
     example = Example()
-    example.set_theme_advanced("arc", saturation=1.2, hue=1.4, brightness=0.99)
+    example.set_theme("equilux")
     example.mainloop()
